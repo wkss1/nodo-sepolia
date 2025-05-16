@@ -129,7 +129,6 @@ nano docker-compose.yml
 Pega el siguiente contenido:
 El comando anterior te abre una ventana completamente vacia, lo cual esta bien por que recien creamos este archivo, ahora vamos a pegar aqui la información
 
-<details>
 
 ```yaml
 services:
@@ -176,7 +175,6 @@ services:
       --metrics
 ```
 
-</details>
 
 Ya pegado el texto, hacemos "CTRL" + "X" para cerrar, grabamos los cambios presionando Y. y luego Enter para cerrarlo y volver al terminal
 
