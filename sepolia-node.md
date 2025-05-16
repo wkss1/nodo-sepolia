@@ -238,6 +238,7 @@ curl http://localhost:5052/eth/v1/node/syncing
 - `"is_syncing": false` → si dice falso, tu cliente de consenso ya esta sincronizado.
 
 El proceso de sincronizacion puede durar varias horas, si ambos comando anteriormente te funcionaron y te devolvieron un valor, quiere decir que esta funcionando bien, solo debes esperar que sincronize, tambien debes ver los Logs para saber si esta cargando bloques veras un porcentaje de sincronizacion o veras nuevos bloques (revisa si dice error o warn, de lo contrario todo bien). Tambien puedes usar GPT y enviarle el resultado de tus logs o preguntarle que esta pasando o que te ayude a entender algun error.
+
 ---
 
 ## 7️⃣ Configurar firewall
