@@ -130,7 +130,6 @@ Pega el siguiente contenido:
 El comando anterior te abre una ventana completamente vacia, lo cual esta bien por que recien creamos este archivo, ahora vamos a pegar aqui la información
 
 <details>
-<summary>📄 <strong>Contenido del archivo docker-compose.yml</strong></summary>
 
 ```yaml
 services:
