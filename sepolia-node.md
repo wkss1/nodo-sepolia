@@ -19,11 +19,14 @@ Puedes seguir esta guía en tu equipo local, o puedes tambien utilizar un VPS (a
 
 Por EJ. si deseas correr un nodo de algun L2 como puede ser Aztec, este nodo te pide tener un RPC para el cliente de consenso de L1 y un RPC para el cliente de ejecución del L1
 
-Un RPC no es mas que una llamada que permite interactuar con el nodo, en el caso de un desarrollador, tener un RPC te permite usarlo directamente y tener acceso a la blockchain desde tu nodo sin depender de un proveedor pago o uno gratis que suelen estar limitados. En el caso de Aztec o otros L2 necesitan tener un RPC del L1 para poder correr ya que el L2 depende del L1 y normalmente los RPC gratis no dan a basto por sus limitaciones. asi que si quieres ahorrarte $ y aprender como correr tu primer nodo que puede ser una profesion o ayudarte en tu perfil profesional. Esta guía es para ti
+Un RPC no es mas que una llamada que permite interactuar con el nodo, en el caso de un desarrollador, tener un RPC te permite usarlo directamente y tener acceso a la blockchain desde tu nodo sin depender de un proveedor pago o uno gratis que suelen estar limitados.
+
+En el caso de Aztec o otros L2 necesitan tener un RPC del L1 para poder correr ya que el L2 depende del L1 y normalmente los RPC gratis no dan a basto por sus limitaciones. asi que si quieres ahorrarte $ y aprender como correr tu primer nodo que puede ser una profesion o ayudarte en tu perfil profesional. Esta guía es para ti
 
 ## Ethereum L1 (SEPOLIA)
 
 El L1 de ethereum esta compuesto por dos redes o dos capas en paralelo, ethereum en realidad son 2 redes que hablan entre ellas, por eso en esta guía correremos los 2 clientes.
+
 1. Geth para el cliente de ejecucion
 2. Lighthouse para el cliente de consenso
 
