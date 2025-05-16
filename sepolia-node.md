@@ -17,7 +17,7 @@ Esta guía corre un nodo sepolia usando docker y utiliza los clientes Geth y Lig
 
 Puedes seguir esta guía en tu equipo local, o puedes tambien utilizar un VPS (alquilar un servidor virtual) para tener tu nodo, esto te permitira tener acceso directo a un RPC de Ethereum Sepolia, para desarrollardores, para correr otros nodos L2 sin tener que pagar por un RPC ($50-$250 por mes).
 
-Por EJ. si deseas correr un nodo de algun l2 como puede ser Aztec, este nodo te pide tener un RPC para el cliente de consenso de L1 y un RPC para el cliente de ejecución del L1,/
+Por EJ. si deseas correr un nodo de algun L2 como puede ser Aztec, este nodo te pide tener un RPC para el cliente de consenso de L1 y un RPC para el cliente de ejecución del L1
 
 Un RPC no es mas que una llamada que permite interactuar con el nodo, en el caso de un desarrollador, tener un RPC te permite usarlo directamente y tener acceso a la blockchain desde tu nodo sin depender de un proveedor pago o uno gratis que suelen estar limitados. En el caso de Aztec o otros L2 necesitan tener un RPC del L1 para poder correr ya que el L2 depende del L1 y normalmente los RPC gratis no dan a basto por sus limitaciones. asi que si quieres ahorrarte $ y aprender como correr tu primer nodo que puede ser una profesion o ayudarte en tu perfil profesional. Esta guía es para ti
 
