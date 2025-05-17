@@ -295,8 +295,8 @@ Cuando estas en tu red interna, tambien puedes usar tu IP interno depende de la 
 
 Por ejemplo, si vas a correr un nodo de aztec en tu mismo servidor local donde tienes tu nodo de sepolia, usarias como URL de tu RPC algo asi:
 
-- Geth: http://192.168.100.149:8545
-- Lighthouse: http://192.168.100.149:5052
+- Geth: http://192.168.100.130:8545
+- Lighthouse: http://192.168.100.130:5052
 
 (192.168.100.149 deberas cambiarlo por tu propio IP privado)
 
