@@ -78,13 +78,13 @@ Primero, abrimos el archivo con este comando.
 sudo nano /etc/sysctl.conf
 ```
 
-Luego agregamos al final del archivo sin modificar nada mas lo siguiente:
+Luego agregamos al final del archivo solo lo siguiente, sin modificar nada mas:
 
 ```bash
 net.core.rmem_max=7500000
 net.core.wmem_max=7500000
 ```
-Luego de pegarlo, presiona "ctrl" + "X" para cerrar el archivo, de dira si quieres guardar le das Y (Y significa si) y luego le das enter.
+Luego de pegarlo esas dos lineas al final, presiona "ctrl" + "X" para cerrar el archivo, te dira si quieres guardar le das Y (Y significa si) y luego le das Enter.
 
 Una vez cerrado el archivo, con este comando hacemos que los cambios realizados hagan efecto.
 
@@ -176,15 +176,15 @@ services:
 ```
 
 
-Ya pegado el texto, hacemos "CTRL" + "X" para cerrar, grabamos los cambios presionando Y. y luego Enter para cerrarlo y volver al terminal
+Ya pegado el texto, hacemos "CTRL" + "X" para cerrar, grabamos los cambios presionando Y. y luego Enter para cerrarlo y volver al terminal.
 
-NOTA: En este caso, en el docker compose no hemos colocado o "mapeado" puertos, ya que configuramos el contenedor en la red HOST, eso quiere decir que los nodos estan en nuestra red de host y no necesita mapear los puertos, esta directamente conectado a nuestro host local. (esto simplifica los pasos a cambio de isolacion, pero en nuestro caso esnun testnet y estamos practicando asi que nos nos afecta en nada, por el contrario nos facilita todo)
+NOTA: En este caso, en el docker compose no hemos colocado o "mapeado" puertos, ya que configuramos el contenedor en la red HOST, eso quiere decir que los nodos estan en nuestra red de host y no necesita mapear los puertos, esta directamente conectado a nuestro host local. (esto simplifica los pasos a cambio de isolacion), pero en nuestro caso es un testnet y estamos practicando asi que nos nos afecta en nada, por el contrario, nos facilita todo.
 
 ---
 
 ## 4️⃣ Comprobar puertos utilizados
 
-Con este comando podemos verificar si los puertos estan siendo utilizados para evitar confilctos, si no tienes ningun otro servicio, entonces no estaran utilizados
+Con este comando podemos verificar si los puertos estan siendo utilizados para evitar confilctos, si no tienes ningun otro servicio, entonces no estaran utilizados.
 
 ```bash
 netstat -tuln | grep -E '30303|8545|8546|8551|5052|9000'
@@ -214,13 +214,14 @@ sudo ufw allow incoming
 sudo ufw allow outgoing
 ```
 
-Esto abrira todas las entradas y salidas en todos los puertos, puedes usarlo para verificar si alguna apertura de puertos te esta dando problemas aunque no es lo mas recomendable por seguridad, idealmente solo abrimos los puertos que necesitamos usar, igualmente en un ambiente de prueba o desarrollo y en un testnet no tenemos ningun problema.
+Esto abrira todas las entradas y salidas en todos los puertos, puedes usarlo para verificar si alguna apertura de puertos te esta dando problemas aunque no es lo mas recomendable por seguridad, idealmente solo abrimos los puertos que necesitamos usar, igualmente en un ambiente de prueba o desarrollo y en un testnet no tenemos ningun problema por hacer esto, ya luego podemos agregar la reglas de forma correcta
 
 ---
 
 
 ## 6️⃣ Iniciar los nodos
 Con este comando le decimos a docker que inicie usando el compose que recien creamos. esperamos que se cargue y ya tendremos los contenedores activos y el nodo estara corriendo
+
 ```bash
 docker compose up -d
 ```
