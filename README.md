@@ -305,7 +305,7 @@ Por ejemplo, si vas a correr un nodo de aztec en tu mismo servidor local donde t
 
 Es el mismo IP local del equipo o servidor pero son diferentes puertos. (tanto el ip interno como usar local host es lo mismo, pero si usaste localhost y te da algun error prueba con el IP o viceversa)
 
-Ya que en el ejemplo de Aztec, asi este en tu propio equipo, Docker crea una red personalizada (bridge) para este nodo, por ende no podras usar localhost, deberas usar tu IP interno de tu equipo (192.168..)
+Ya que en el ejemplo de Aztec, asi este el nodo de aztec en tu mismo equipo, Cuando instalamos Atec, Docker crea una red personalizada (bridge) para este nodo, por ende no podras usar localhost, deberas usar tu IP interno de tu equipo (192.168..)
 
 ---
 
@@ -336,8 +336,9 @@ Cuando quieres acceder a tu nodo local desde una red externa, usaras tu IP exter
 Si estas usando un vps (o servidor virtual alquilado, este paso no es necesario ya que los VPS tienen ya un IP publico, pero si estas corriendolo de forma local en una red (como puede ser en tu casa con tu router) entonces si debes de entrar a la configuracion de tu router y hacer port forward de los puertos 8545 para Geth cliente de ejecución y puerto 5052 para Lighthouse cliente de consenso).
 
 Puedes buscar en youtube como hacer port forward o ayudarte con GPT si nunca lo has echo pero es bastante sencillo. (el proceso es diferente depende de la marca de tu router)
+(si vas a usar tu nodo desde tu misma red no necesitas hacer esto para el nodo de sepolia)
 
-Ya con tu nodo sincronizado y tus RPCs puedes proceder a usar tu nodo y hacer lo que quieras con el! 
+Ya con tu nodo sincronizado y tus RPCs puedes proceder a usar tu nodo y hacer lo que quieras con el! Crack!
 
 ---
 
