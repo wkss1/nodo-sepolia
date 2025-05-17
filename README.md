@@ -192,56 +192,7 @@ netstat -tuln | grep -E '30303|8545|8546|8551|5052|9000'
 
 ---
 
-## 5️⃣ Iniciar los nodos
-Con este comando le decimos a docker que inicie usando el compose que recien creamos. esperamos que se cargue y ya tendremos los contenedores activos y el nodo estara corriendo
-```bash
-docker compose up -d
-```
-
-### 🔍 Ver contenedores:
-Con este comando podemos ver los contenedores que estan ahora corriendo, y ver si estan funcionando bien, o si se estan reiniciando.
-
-```bash
-docker ps
-```
-
-### 🔍 Ver logs:
-Los Logs son como el reporte, aqui podemos ver que esta sucediendo con nuestro nodo, si esta arrancando, si se esta sincronizando o si esta dando algun error y asi poder determinar que esta sucediendo o si algo debemos cambiar. (si seguiste todos los pasos tal cual, en tus logs deberias ver que esta sincronizando)
-
-```bash
-docker compose logs -f
-```
-
----
-
-## 6️⃣ Verificar sincronización
-
-Con estos comando, podes ver si tu nodo esta corriendo o si esta sincronizado de una forma muy sencilla.
-
-### 🧠 Nodo de ejecución (Geth)
-
-```bash
-curl -X POST -H "Content-Type: application/json" \
---data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}' \
-http://localhost:8545
-```
-
-- `"result":false` → ya está sincronizado tu cliente de ejecución
-- Si devuelve un valor (bloques) → está en proceso de sincronización
-
-### 🔗 Nodo de consenso (Lighthouse)
-
-```bash
-curl http://localhost:5052/eth/v1/node/syncing
-```
-
-- `"is_syncing": false` → si dice falso, tu cliente de consenso ya esta sincronizado.
-
-El proceso de sincronizacion puede durar varias horas, si ambos comando anteriormente te funcionaron y te devolvieron un valor, quiere decir que esta funcionando bien, solo debes esperar que sincronize, tambien debes ver los Logs para saber si esta cargando bloques veras un porcentaje de sincronizacion o veras nuevos bloques (revisa si dice error o warn, de lo contrario todo bien). Tambien puedes usar GPT y enviarle el resultado de tus logs o preguntarle que esta pasando o que te ayude a entender algun error.
-
----
-
-## 7️⃣ Configurar firewall
+## 5️⃣ Configurar firewall
 El firewall es lo que permite las conecciones en tu puertos, y en este caso nuestros cliente hablan entre ellos usando estos puertos, asi que debemos abrirlos o darle permiso con los siguientes comandos.
 
 ```bash
@@ -267,6 +218,64 @@ Esto abrira todas las entradas y salidas en todos los puertos, puedes usarlo par
 
 ---
 
+
+## 6️⃣ Iniciar los nodos
+Con este comando le decimos a docker que inicie usando el compose que recien creamos. esperamos que se cargue y ya tendremos los contenedores activos y el nodo estara corriendo
+```bash
+docker compose up -d
+```
+
+### 🔍 Ver contenedores:
+Con este comando podemos ver los contenedores que estan ahora corriendo, y ver si estan funcionando bien, o si se estan reiniciando.
+
+```bash
+docker ps
+```
+
+### 🔍 Ver logs:
+Los Logs son como el reporte, aqui podemos ver que esta sucediendo con nuestro nodo, si esta arrancando, si se esta sincronizando o si esta dando algun error y asi poder determinar que esta sucediendo o si algo debemos cambiar. (si seguiste todos los pasos tal cual, en tus logs deberias ver que esta sincronizando)
+
+```bash
+docker compose logs -f
+```
+
+---
+
+## 7️⃣ Verificar sincronización
+
+Con estos comando, podes ver si tu nodo esta corriendo o si esta sincronizado de una forma muy sencilla.
+
+### 🧠 Nodo de ejecución (Geth)
+
+```bash
+curl -X POST -H "Content-Type: application/json" \
+--data '{"jsonrpc":"2.0","method":"eth_syncing","params":[],"id":1}' \
+http://localhost:8545
+```
+
+- `"result":false` → ya está sincronizado tu cliente de ejecución
+- Si devuelve un valor (bloques) → está en proceso de sincronización
+
+### 🔗 Nodo de consenso (Lighthouse)
+
+```bash
+curl http://localhost:5052/eth/v1/node/syncing
+```
+
+- `"is_syncing": false` → si dice falso, tu cliente de consenso ya esta sincronizado.
+
+El proceso de sincronizacion puede durar varias horas, si ambos comando anteriormente te funcionaron y te devolvieron un valor, quiere decir que esta funcionando bien, solo debes esperar que sincronize, tambien debes ver los Logs para saber si esta cargando bloques veras un porcentaje de sincronizacion o veras nuevos bloques (revisa si dice error o warn, de lo contrario todo bien). Tambien puedes usar GPT y enviarle el resultado de tus logs o preguntarle que esta pasando o que te ayude a entender algun error.
+
+# NOTA IMPORTANTE:
+
+- El cliente de EJECUCION en este caso GETH, te dara el numero de bloque que puedes comparar con el bloque actual de la red sepolia en el explorador de bloques: https://sepolia.etherscan.io/
+- El cliente de CONSENSO en este caso LIGHTHOUSE, te mostrar un numero de SLOT, el cual no es igual al numero de bloque, para verificar si esta actualizado tu consenso, debes ir al beaconchain y ver el numero de SLOT Actual: https://beaconcha.in
+
+Asi podras saber exactamente si estas al dia con todo en tu nodo y listo para usarlo!
+
+---
+
+
 ## 8️⃣ Acceder a los endpoints RPC
 
 Una ves que tu nodo esta corriendo y actualizado, ya puedes obtener los RPC de consenso (beaconchain) y de ejecucion. Estos RPC son para conectarse a tu nodo, entonces si eres desarrollador uedes usar este rpc, puedes configurar tu wallet para que use tu propio nodo, o si quieres correr otro nodo L2 que necesita hablar con un nodo L1, estos son los RPC que usarias.
@@ -287,15 +296,18 @@ Por ejemplo, si vas a correr un nodo de aztec en tu mismo servidor local donde t
 
 - Geth: http://192.168.100.149:8545
 - Lighthouse: http://192.168.100.149:5052
+
 (192.168.100.149 deberas cambiarlo por tu propio IP privado)
 
-8545: por que es el puerto donde esta el cliente de ejecución
-5052: por que es el puerto donde esta el cliente de consenso
+- 8545: por que es el puerto donde esta el cliente de ejecución
+- 5052: por que es el puerto donde esta el cliente de consenso
 
 Es el mismo IP local del equipo o servidor pero son diferentes puertos. (tanto el ip interno como usar local host es lo mismo, pero si usaste localhost y te da algun error prueba con el IP o viceversa)
+
 Ya que en el ejemplo de Aztec, asi este en tu propio equipo, Docker crea una red personalizada (bridge) para este nodo, por ende no podras usar localhost, deberas usar tu IP interno de tu equipo (192.168..)
 
 ---
+
 ## Encuentra el IP INTERNO de tu servidor o equipo:
 Este comando te retornara varios segmentos de informacion de redes, tu IP Interno o privado, suele ser el que esta en el bloque enp5s0 o enp3s0 y veras una linea que diga inet 192.168...
 
@@ -318,7 +330,7 @@ Este comando imprimer unicamente tu IP Externo o Pubico para que puedas acceder 
 
 ## Port Forwarding:
 
-Cuando quieres acceder a tu nodo local desde una red externa, usaras tu IP externo y pondras :8548 (o el puerto que necesitas acceder segun el cliente al que quieres acceder), el temas es que necesitas configurar o hacer "port forward: de estos puertos, para que tu router o tu red local sepa que cuando llega un mensaje a ese puerto, debe enviarlo a tu equipo donde esta tu nodo especificamente.
+Cuando quieres acceder a tu nodo local desde una red externa, usaras tu IP externo y pondras :8548 (o el puerto que necesitas acceder segun el cliente al que quieres acceder), el tema es que necesitas configurar o hacer "port forward: de estos puertos, para que tu router o tu red local sepa que cuando llega un mensaje a ese puerto, debe enviarlo a tu equipo donde esta tu nodo especificamente.
 
 Si estas usando un vps (o servidor virtual alquilado, este paso no es necesario ya que los VPS tienen ya un IP publico, pero si estas corriendolo de forma local en una red (como puede ser en tu casa con tu router) entonces si debes de entrar a la configuracion de tu router y hacer port forward de los puertos 8545 para Geth cliente de ejecución y puerto 5052 para Lighthouse cliente de consenso).
 
@@ -329,4 +341,7 @@ Ya con tu nodo sincronizado y tus RPCs puedes proceder a usar tu nodo y hacer lo
 ---
 
 ¿Listo para usar tu nodo Sepolia para pruebas y desarrollo? 🚀  
+
 - dudas: @inbestprogram
+
+https://x.com/inbestprogram
