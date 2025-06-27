@@ -342,7 +342,6 @@ Ya con tu nodo sincronizado y tus RPCs puedes proceder a usar tu nodo y hacer lo
 
 ---
 
-#Video con el paso a paso: https://www.youtube.com/watch?v=6C7xb2kKAfw
 
 ¿Listo para usar tu nodo Sepolia para pruebas y desarrollo? 🚀  
 
